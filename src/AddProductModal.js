@@ -23,8 +23,9 @@ export default function AddProduct(props) {
 
   // TODO: validate the form
 
-  return ReactDom.createPortal(
-    <div className="modal" tabIndex="-1">
+  return ReactDom.createPortal(<>
+    <div className="custom-modal-backdrop"></div>
+    <div className="modal modal-lg" tabIndex="-1">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
@@ -109,7 +110,7 @@ export default function AddProduct(props) {
                     id="type"
                     value={type}
                     options={[
-                      { value: "", label: "--Select Product Type--" },
+                      { value: "", label: "--Product Type--" },
                       { value: "Face", label: "Face" },
                       { value: "Eye", label: "Eye" },
                       { value: "Lip", label: "Lip" },
@@ -138,7 +139,7 @@ export default function AddProduct(props) {
                     label="Price"
                     id="price"
                     value={price}
-                    placeholder="$10.99"
+                    placeholder="10.99"
                     onChange={(newPrice) => {
                       setPrice(newPrice);
                     }}
@@ -150,25 +151,27 @@ export default function AddProduct(props) {
                 <div className="col-6">
                   <TextInput
                     type="text"
-                    label="Expiry Length (months)"
+                    label="Expiry Length"
                     id="expiry"
                     value={expiryLength}
                     placeholder="12"
                     onChange={(newExpiry) => {
                       setExpiryLength(newExpiry);
                     }}
+                    help="In months"
                   />
                 </div>
                 <div className="col-6">
                   <TextInput
                     type="text"
-                    label="Open Date (N/A if unopened)"
+                    label="Open Date"
                     id="open"
                     value={dateOpened}
                     placeholder={moment().format("MM-DD-YYYY")}
                     onChange={(newDateOpened) => {
                       setDateOpened(newDateOpened);
                     }}
+                    help="Leave empty if unopened"
                   />
                 </div>
               </div>
@@ -190,24 +193,9 @@ export default function AddProduct(props) {
                 type="text"
                 label="add"
                 id="add"
+                name="add"
                 hidden
                 defaultValue={moment().format("MM-DD-YYYY")}
-              />
-
-              <input
-                type="text"
-                label="favorite"
-                id="favorite"
-                hidden
-                defaultValue={false}
-              />
-
-              <input
-                type="text"
-                label="dateAdded"
-                id="dateAdded"
-                hidden
-                defaultValue={null}
               />
 
               <button type="submit" className="btn btn-primary">
@@ -217,7 +205,9 @@ export default function AddProduct(props) {
           </div>
         </div>
       </div>
-    </div>,
+    </div>
+    </>,
     document.getElementById("modal-container")
+    
   );
 }

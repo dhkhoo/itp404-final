@@ -1,4 +1,3 @@
-import moment from "moment";
 import { useEffect, useState } from "react";
 import { Form, useLoaderData } from "react-router-dom";
 import DropdownInput from "../inputComponents/Dropdown";
@@ -11,7 +10,6 @@ export default function EditProduct() {
   }, []);
 
   const product = useLoaderData();
-  console.log(product);
   const defaultImage =
     "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg";
 

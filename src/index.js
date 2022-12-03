@@ -102,9 +102,9 @@ const router = createBrowserRouter([
               formData.get("expiry"),
               formData.get("open"),
               formData.get("notes"),
-              formData.get("added"),
+              formData.get("add"),
               formData.get("favorite"),
-              formData.get("dateAdded")
+              formData.get("dateFavorited")
             ).then(() => {
               toast.success("You've successfully added a product.");
 
@@ -114,27 +114,20 @@ const router = createBrowserRouter([
         }
       },
       {
-        //THIS IS NOT WORKING RIGHT NOW -- GETTING A 405 ERROR
-        path: "/products/:id/destroy",
-        action({ request, params }) {
-          //console.log("in index destroy");
-          //console.log(params.id);
-          return request.formData().then((formData) => {
-            return deleteProduct(params.id).then(() => {
-              toast.success("Product Removed.");
-              return redirect("/");
-            });
+        path: "/products/:makeupId/remove",
+        action({ params }) {
+          return deleteProduct(params.makeupId).then(() => {
+            toast.success("You've successfully removed a product.");
+            return redirect("/");
           });
         }
       },
       {
-        // THIS IS ALSO NOT WORKING -- GETTING A 405 ERROR
-        path: "/products/:id/favorite",
+        path: "/products/:makeupId/favorite",
         action({ request, params }) {
-          console.log("favoriting");
           return request.formData().then((formData) => {
             return updateFavorite(
-              params.id,
+              params.makeupId,
               formData.get("favorite"),
               formData.get("dateFavorited")
             ).then(() => {
@@ -151,6 +144,7 @@ const router = createBrowserRouter([
     ]
   }
 ]);
+
 
 const root = createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={router} />);

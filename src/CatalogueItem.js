@@ -1,13 +1,24 @@
 import moment from "moment";
 import { useState } from "react";
-import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { updateFavorite } from "./api";
 import EmptyHeart from "./EmptyHeart";
 import FilledHeart from "./FilledHeart";
 
 export default function CatalogueItem(props) {
+
+  const currentFavorite = <FilledHeart />;
+  const notFavorite = <EmptyHeart />;
   const [favorite, setFavorite] = useState(props.item.favorite);
 
+  const toggleFavorite = () => {
+    updateFavorite(props.item.id, !favorite, moment().format("MM-DD-YYYY")).then(() => {
+      toast.success("You've updated your favorites");
+      setFavorite(!favorite);
+    })
+  }
+  
   return (
     <div className="row product">
       <div className="row">
@@ -16,28 +27,21 @@ export default function CatalogueItem(props) {
           <h6 className="card-subtitle mb-2 text-muted">{props.item.brand}</h6>
         </div>
         <div className="col-1">
-          <Form method="POST" action={`/products/${props.item.id}/favorite`}>
-            <input type="hidden" name="favorite" value={favorite} />
-            <input
-              type="hidden"
-              name="dateFavorited"
-              value={moment().format("MM-DD-YYYY")}
-            />
             <button
-              type="submit"
+              type="btn"
               className="btn btn-link"
-              onClick={() => {
-                setFavorite(!favorite);
-              }}
+              onClick={toggleFavorite}
             >
-              {favorite ? <FilledHeart /> : <EmptyHeart />}
+              {favorite ? currentFavorite : notFavorite}
             </button>
-          </Form>
         </div>
       </div>
       <div className="row">
         {props.children}
-        <div className="col">
+        
+      </div>
+      <div className="row">
+        <div>
           <Link
             className="btn btn-primary right-space"
             to={`/products/${props.item.id}`}

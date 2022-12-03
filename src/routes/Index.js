@@ -1,9 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import CatalogueItem from "../CatalogueItem";
 
 import "../styles.css";
 import "bootstrap/dist/css/bootstrap.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock } from "@fortawesome/free-regular-svg-icons";
+import { faBox } from "@fortawesome/free-solid-svg-icons";
+import moment from "moment";
 
 export default function Index() {
   useEffect(() => {
@@ -12,16 +16,27 @@ export default function Index() {
 
   const catalogue = useLoaderData();
   console.log(catalogue);
+  
 
   return (
     <div className="container">
       <h1>Catalogue</h1>
       <div>
         {catalogue.map((item) => {
+          const openTime = moment(item.open);
           return (
             <CatalogueItem item={item} key={item.id}>
-              <p>Product Expiry Length: {item.expiry} Months</p>
-              <p>Product Opened: {item.open ? item.open : "N/A"}</p>
+              <div className="col">
+                <p><FontAwesomeIcon icon={faClock} />{" "} {item.expiry} Months</p>
+                <p><FontAwesomeIcon icon={faBox} /> {" "} {item.type} </p>
+              </div>
+              <div className="col">
+                <p>{item.open ? "Product Opened: " + item.open : "Product Unopened"}</p>
+                <p>{moment(item.open).isValid()
+                  ? "Product Expiry: " + openTime.add(item.expiry, "M").format("MM-DD-YYYY")
+                  : ""}</p>
+              </div>
+              
             </CatalogueItem>
           );
         })}

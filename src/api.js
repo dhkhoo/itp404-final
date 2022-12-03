@@ -25,8 +25,6 @@ export function addMakeup(
   open,
   notes,
   added,
-  favorite,
-  dateFavorited
 ) {
   return fetch("http://localhost:3000/products", {
     method: "POST",
@@ -42,8 +40,8 @@ export function addMakeup(
       open: open,
       notes: notes,
       dateAdded: added,
-      favorite: favorite,
-      dateFavorited: dateFavorited
+      favorite: false,
+      dateFavorited: null
     }),
     headers: {
       "Content-type": "application/json"
@@ -95,6 +93,7 @@ export function updateMakeup(
 
 // DELETE /products/:id
 export function deleteProduct(makeupId) {
+  console.log("within api");
   return fetch(`http://localhost:3000/products/${makeupId}`, {
     method: "DELETE"
   });
@@ -103,7 +102,8 @@ export function deleteProduct(makeupId) {
 // UPDATE FAVORITES
 // PATCH /products/:id
 export function updateFavorite(makeupId, favorite, dateFavorited) {
-  return fetch(`http://localhost:3000/products/${makeupId}`, {
+  if(favorite) {
+    return fetch(`http://localhost:3000/products/${makeupId}`, {
     method: "PATCH",
     body: JSON.stringify({
       favorite: favorite,
@@ -119,4 +119,23 @@ export function updateFavorite(makeupId, favorite, dateFavorited) {
 
     return response.json();
   });
+  } 
+  else{
+    return fetch(`http://localhost:3000/products/${makeupId}`, {
+    method: "PATCH",
+    body: JSON.stringify({
+      favorite: favorite,
+      dateFavorited: null
+    }),
+    headers: {
+      "Content-type": "application/json"
+    }
+  }).then((response) => {
+    if (response.status >= 400) {
+      return Promise.reject();
+    }
+
+    return response.json();
+  });
+  }
 }

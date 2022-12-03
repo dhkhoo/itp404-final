@@ -1,6 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import AddProduct from "./AddProductModal";
 
@@ -31,7 +29,9 @@ export default function Navigation() {
                 Favorites
               </Link>
             </li>
-            <li className="nav-item me-auto">
+          </ul>
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li className="nav-item">
               <div>
                 <button
                   type="button"
@@ -47,7 +47,7 @@ export default function Navigation() {
                   <AddProduct
                     title="My modal title"
                     body={() => {
-                      return <p>Modal body text goes here.</p>;
+                      return <p></p>;
                     }}
                     onClose={() => {
                       setIsModalOpen(false);

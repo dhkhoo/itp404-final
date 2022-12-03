@@ -5,6 +5,7 @@ export default function TextInput(props) {
         <label className="form-label" htmlFor={props.id}>
           {props.label}
         </label>
+        
         <input
           type={props.type}
           className="form-control"
@@ -17,6 +18,8 @@ export default function TextInput(props) {
             props.onChange(event.target.value);
           }}
         />
+        <div class="form-text">{props.help}</div>
+        
       </div>
     </>
   );

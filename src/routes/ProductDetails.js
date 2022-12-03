@@ -1,7 +1,6 @@
 import moment from "moment";
 import { useEffect, useState } from "react";
-import { Form } from "react-bootstrap";
-import { useLoaderData } from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
 import { updateFavorite } from "../api";
 import EmptyHeart from "../EmptyHeart";
 import FilledHeart from "../FilledHeart";
@@ -76,7 +75,7 @@ export default function ProductDetails() {
               </a>
             </div>
             <div className="col-3">
-              <Form method="POST" action={`/products/${product.id}/destroy`}>
+              <Form method="post" action={`/products/${product.id}/remove`}>
                 <button type="submit" className="btn btn-danger">
                   Remove Product
                 </button>

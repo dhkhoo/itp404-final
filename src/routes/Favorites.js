@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Form, useLoaderData } from "react-router-dom";
+import { useEffect } from "react";
+import { useLoaderData } from "react-router-dom";
 import CatalogueItem from "../CatalogueItem";
 
 export default function Favorites() {
