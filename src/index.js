@@ -1,7 +1,5 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import React from "react";
-import ReactDOM from "react-dom";
 import {
   createBrowserRouter,
   redirect,
@@ -18,7 +16,6 @@ import {
   deleteProduct,
   fetchMakeup,
   fetchMakeupList,
-  updateFavorite,
   updateMakeup
 } from "./api";
 import { toast } from "react-toastify";
@@ -89,7 +86,6 @@ const router = createBrowserRouter([
       {
         path: "/products/addProduct",
         action({ request }) {
-          console.log("requesting to add");
           return request.formData().then((formData) => {
             return addMakeup(
               formData.get("name"),
@@ -119,21 +115,6 @@ const router = createBrowserRouter([
           return deleteProduct(params.makeupId).then(() => {
             toast.success("You've successfully removed a product.");
             return redirect("/");
-          });
-        }
-      },
-      {
-        path: "/products/:makeupId/favorite",
-        action({ request, params }) {
-          return request.formData().then((formData) => {
-            return updateFavorite(
-              params.makeupId,
-              formData.get("favorite"),
-              formData.get("dateFavorited")
-            ).then(() => {
-              toast.success("You've updated your favorites");
-              return redirect("/");
-            });
           });
         }
       },

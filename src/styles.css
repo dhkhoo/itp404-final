@@ -17,6 +17,16 @@
   border: black solid 1px;
 }
 
+.makeup-class{
+  height: 150px;
+  width: auto;
+  margin-left: 50%;
+}
+
+.line{
+  border-right:pink solid 1px;
+}
+
 .container {
   margin-top: 20px;
 }
@@ -41,8 +51,43 @@
 }
 
 .product {
-  border: 1px solid black;
+  border: 2px solid #B5838D;
   margin: 10px 0px;
   border-radius: 20px;
   padding: 10px;
+  background-color: #fbf3ef;
 }
+
+.favorite{
+  background-color: #fbf3ef;
+  border: 2px solid pink;
+}
+
+
+.navbar{
+  background-color:#f2a69f;
+}
+
+.btn-primary{
+  background-color:#6D6875 !important;
+  border-color: #6D6875 !important;
+}
+
+.btn-primary:hover{
+  background-color:#b5838d !important;
+  border-color: #b5838d !important;
+}
+
+
+.btn-warning{
+  background-color: #FFCDB2 !important;
+  border-color: #FFCDB2 !important;
+
+}
+
+.btn-danger{
+  background-color: #E5989B !important;
+  border-color: #FFB4A2 !important;
+
+}
+
