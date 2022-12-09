@@ -34,7 +34,9 @@
 .top-space {
   margin-top: 20px;
 }
-
+.bottom-space{
+  margin-bottom:20px;
+}
 .right-space {
   margin-right: 10px;
 }
