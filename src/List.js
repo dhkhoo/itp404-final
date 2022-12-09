@@ -9,7 +9,7 @@ export default function List(props) {
 				key={listId}
 				id={listId}
 				listInfo={listInfo[i]}
-				checked={props.listData[listId]}
+				checked={props.listData[i]}
 				onChange={(newCheck) => {
 					props.onChange(newCheck, listId);
 				}}
@@ -32,7 +32,7 @@ function ListItem(props) {
 					className="form-check-input"
 					type="checkbox"
 					id={props.id}
-					checked={props.checked}
+					checked={props.checked.checked}
 					onChange={(event) => {
 						props.onChange(event.target.checked);
 					}}
@@ -43,11 +43,11 @@ function ListItem(props) {
 					<div className="col-5">
 						<h5>{props.listInfo.productName}</h5>
 					</div>
-					<div className="col-4">
+					<div className="col-3">
 						<p>{props.listInfo.brand}</p>
 					</div>
-					<div className="col-3">
-						<p>Date Added: {props.listInfo.dateAdded}</p>
+					<div className="col-2">
+						<p>{props.listInfo.dateAdded}</p>
 					</div>
 				</label>
 			</div>

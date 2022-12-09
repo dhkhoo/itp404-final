@@ -40,6 +40,9 @@
 .right-space {
   margin-right: 10px;
 }
+.left-space{
+  margin-left:10px;
+}
 
 .tags {
   border-radius: 20px;
